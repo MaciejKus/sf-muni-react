@@ -2,13 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Map from './Map';
 import RouteSelectionContainer from '../containers/RouteSelectionContainer';
-import { fetchAllRoutes, updateCurrentBuses } from '../actions/';
+import { fetchAllRoutes, updateCurrentBuses, fetchMapDataFeatures } from '../actions/';
 import '../styles/App.css';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchAllRoutes());
     this.pollBusData();
+
+  const mapComponentData = [ 
+    { 
+      color: '#bbb', 
+      url: './assets/sfmaps/streets.json', 
+    }, 
+    { 
+      color: '#777', 
+      url: './assets/sfmaps/freeways.json', 
+    }, 
+    { 
+      color: '#999', 
+      url: './assets/sfmaps/arteries.json', 
+    }, 
+  ]; 
+
+    mapComponentData.forEach( (d) => {
+      this.props.dispatch(fetchMapDataFeatures(d.url, d.color));
+    })
   }
 
   componentWillUnmount() {

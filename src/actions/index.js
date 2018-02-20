@@ -7,6 +7,7 @@ export const ADD_PATH = 'ADD_PATH';
 export const ADD_PATH_LAST_TIME = 'ADD_PATH_LAST_TIME';
 export const ADD_PATH_BUSES = 'ADD_PATH_BUSES';
 export const ADD_BUS = 'ADD_BUS';
+export const ADD_MAP_DATA_FEATURES = 'ADD_MAP_DATA_FEATURES';
 export const POPULATE_ALL_ROUTES = 'POPULATE_ALL_ROUTES';
 
 export const removeRoute = (route) => ({
@@ -17,6 +18,11 @@ export const removeRoute = (route) => ({
 export const addRoute = (route) => ({
   type: ADD_ROUTE,
   route,
+});
+
+export const addMapDataFeatures = (data) => ({
+  type: ADD_MAP_DATA_FEATURES,
+  data,
 });
 
 export const addPath = (key, value) => ({
@@ -114,6 +120,16 @@ export const fetchAllRoutes = () => (dispatch) => {
     .catch((err) => {
       console.log('failed to get Muni data', err);
     });
+};
+
+export const fetchMapDataFeatures = (url, color) => (dispatch) => {
+  return d3json(url)
+    .then((data) => {
+      dispatch(addMapDataFeatures(
+        {features: data.features, url: url, color: color}
+      ))
+    })
+    .catch((err) => console.warn(`fetch failed ${err}`));
 };
 
 // update the data of currently selected buses

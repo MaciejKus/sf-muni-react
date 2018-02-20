@@ -6,9 +6,11 @@ import {
   ADD_BUS,
   ADD_PATH_BUSES,
   ADD_PATH_LAST_TIME,
+  ADD_MAP_DATA_FEATURES,
 } from '../actions/';
 
 const initialState = {
+  mapDataFeatures: [], // data to render the background city map
   allRoutes: [], // list of all routes for agency (MUNI)
   selectedRoutes: [], // currently displayeds routes
   routePaths: {}, // route path information (Bus stops, etc)
@@ -33,6 +35,13 @@ const busAppReducer = (state = initialState, action) => {
       newSelectedRoutes.push(action.route);
       return Object.assign({}, state, {
         selectedRoutes: newSelectedRoutes,
+      });
+    }
+    case ADD_MAP_DATA_FEATURES: {
+      const newFeatures = state.mapDataFeatures.slice();
+      newFeatures.push(action.data);
+      return Object.assign({}, state, {
+        mapDataFeatures: newFeatures,
       });
     }
     case ADD_PATH: {
