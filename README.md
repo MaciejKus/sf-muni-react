@@ -36,3 +36,4 @@ A few other Todos include:
 * Add loading status
 * Zoom in on selected routes
 * Add legend
+* Add more tests

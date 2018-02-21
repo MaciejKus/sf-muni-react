@@ -28,7 +28,6 @@ DrawBus.defaultProps = {
 
 DrawBus.propTypes = {
   buses: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
   color: PropTypes.string,
 };
 

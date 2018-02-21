@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem Matches snapshot 1`] = `
+<li
+  className=""
+  onClick={[Function]}
+>
+  3 bus line
+</li>
+`;
+
+exports[`ListItem Matches snapshot 2`] = `
+<li
+  className=""
+  onClick={[Function]}
+>
+  3 bus line
+</li>
+`;
